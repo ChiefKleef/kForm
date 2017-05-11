@@ -10,9 +10,13 @@ class AppInterface extends React.Component {
     this.state = {
       firstNameValue: '',
       lastNameValue: '',
-      lastNameSubmittedValue: ''
+      lastNameSubmittedValue: '',
+      submitButtonMessage: 'submit',
+      submitting: false
     }
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
+    this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -30,11 +34,45 @@ class AppInterface extends React.Component {
 
   handleSubmit(){
     console.log(this.state);
+    const { firstNameValue, lastNameValue } = this.state;
+    this.setState({
+      submitButtonMessage: 'loading',
+      submitting: true
+    });
+    window.setTimeout(() => {
+      if (firstNameValue.replace(' ', '').length === 0 && lastNameValue.replace(' ', '').length === 0) {
+        this.handleSubmitError();
+      } else {
+        this.handleSubmitSuccess(firstNameValue, lastNameValue);
+      }
+    }, 2000)
+  }
+
+  handleSubmitSuccess(first, last){
     this.setState({
       firstNameValue: '',
       lastNameValue: '',
-      lastNameSubmittedValue: `${this.state.firstNameValue} ${this.state.lastNameValue}`
-    })
+      lastNameSubmittedValue: `${first} ${last}`,
+      submitButtonMessage: 'done'
+    });
+    window.setTimeout(() => {
+      this.setState({
+        submitButtonMessage: 'submit',
+        submitting: false
+      });
+    }, 1000);
+  }
+
+  handleSubmitError(){
+    this.setState({
+      submitButtonMessage: 'error'
+    });
+    window.setTimeout(() => {
+      this.setState({
+        submitButtonMessage: 'submit',
+        submitting: false
+      });
+    }, 1000);
   }
 
   render() {
@@ -52,7 +90,7 @@ class AppInterface extends React.Component {
             <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>
           </div>
         </div>
-        <Submit handleSubmit={this.handleSubmit} />
+        <Submit handleSubmit={this.handleSubmit} submitMessage={this.state.submitButtonMessage} submitting={this.state.submitting}/>
         <div className="form-lns-container">
           <LastNameSubmitted name={this.state.lastNameSubmittedValue}/>
         </div>

@@ -3,13 +3,15 @@ import './Submit.styl'
 
 function Submit(props) {
 
+  const { submitMessage, submitting, handleSubmit } = props;
+
   const handleClick = () => {
-    props.handleSubmit();
+    if (! submitting) handleSubmit();
   }
 
   return (
-    <div className="submit" onClick={handleClick}>
-      <span className="submit-text">SUBMIT</span>
+    <div className={`submit submit-${submitMessage}`} onClick={handleClick}>
+      <span className="submit-text">{submitMessage.toUpperCase()}</span>
     </div>
   );
 }

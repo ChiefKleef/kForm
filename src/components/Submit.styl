@@ -1,28 +1,48 @@
 .submit {
-  background-color: rgba(255,255,255,0);
-  border: 2px solid white
+  border-width: 2px;
+  border-style: solid;
   height: 40px;
-  width: 85px;
+  width: 115px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  color: white;
   font-size: 13pt;
   cursor: pointer;
   .submit-text {
     user-select: none;
     bottom: -0.1em;
   }
+}
+
+.submit-submit {
+  background-color: rgba(255,255,255,0);
+  border-color: white;
+  color: white;
   &:hover{
     transition-duration: 0.2s
-    background-color: rgba(255,255,255,1);
-    color: black;
+    background-color: rgba(255,255,255,.5);
   }
   &:active{
-    background-color: tomato;
-    color: white;
-    border-color: tomato
+    background-color: rgba(255,255,255,.25);
   }
+}
+
+.submit-error {
+  transition-duration: 0.2s;
+  background-color: tomato;
+  border-color: tomato;
+  color: white;
+}
+
+.submit-loading {
+  transition-duration: 0.2s;
+  opacity: .5
+}
+
+.submit-done {
+  transition-duration: 0.2s;
+  background-color: #A2E284;
+  border-color: #A2E284;
 }
