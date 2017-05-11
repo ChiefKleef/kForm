@@ -1,0 +1,28 @@
+.submit {
+  background-color: rgba(255,255,255,0);
+  border: 2px solid white
+  height: 40px;
+  width: 85px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 13pt;
+  cursor: pointer;
+  .submit-text {
+    user-select: none;
+    bottom: -0.1em;
+  }
+  &:hover{
+    transition-duration: 0.2s
+    background-color: rgba(255,255,255,1);
+    color: black;
+  }
+  &:active{
+    background-color: tomato;
+    color: white;
+    border-color: tomato
+  }
+}
