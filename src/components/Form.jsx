@@ -1,6 +1,7 @@
 import './Form.styl';
 import React from 'react';
 
+import Hobbies from './hobbies/Hobbies.jsx';
 import Submit from './Submit.jsx';
 import LastNameSubmitted from './LastNameSubmitted.jsx';
 
@@ -83,12 +84,13 @@ class AppInterface extends React.Component {
             <span><span className='fa fa-user-o'/> Enter Name</span>
           </div>
           <div className="name-input-container">
-            <input type="text" className='name-input name-input-first' value={this.state.firstNameValue} onChange={this.handleNameChange} placeholder='First' />
-            <input type="text" className='name-input name-input-last' value={this.state.lastNameValue} onChange={this.handleNameChange} placeholder='Last' />
+            <input type="text" className='form-input name-input name-input-first' value={this.state.firstNameValue} onChange={this.handleNameChange} placeholder='First' />
+            <input type="text" className='form-input name-input name-input-last' value={this.state.lastNameValue} onChange={this.handleNameChange} placeholder='Last' />
           </div>
           <div className="form-guide form-guide-hobbies">
             <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>
           </div>
+          <Hobbies />
         </div>
         <Submit handleSubmit={this.handleSubmit} submitMessage={this.state.submitButtonMessage} submitting={this.state.submitting}/>
         <div className="form-lns-container">

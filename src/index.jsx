@@ -13,4 +13,7 @@ const store = createStore(
 );
 
 const root = document.getElementById('AppInterface')
-render( <AppInterface / > , root);
+render( 
+  <Provider store={store}>
+    <AppInterface / >
+  </Provider>, root);

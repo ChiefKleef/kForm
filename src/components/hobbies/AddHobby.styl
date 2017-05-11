@@ -1,0 +1,33 @@
+heightVar = 30px;
+.addHobby {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: content '';
+  height: heightVar;
+  .addHobby-input {
+    flex-grow: 1;
+    max-width: calc(100% - 30px)
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom: 1px solid white;
+    background-color: rgba(0,0,0,0);
+    color: white;
+  }
+  .addHobby-button {
+    height: heightVar;
+    width: heightVar;
+    background-color: #A2E284;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .fa {
+      color: white
+    }
+  }
+}

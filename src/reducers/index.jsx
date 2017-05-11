@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {hobbies} from './hobbies.jsx';
+import { hobbies } from './hobbies.jsx';
 
 const formApp = combineReducers({
   hobbies

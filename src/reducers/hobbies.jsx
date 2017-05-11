@@ -10,7 +10,7 @@ const hobby = (state, action) => {
   }
 };
 
-const hobbies = (state = [], action) => {
+export const hobbies = (state = [], action) => {
   switch (action.type) {
     case 'ADD_HOBBY':
       return [
@@ -25,5 +25,3 @@ const hobbies = (state = [], action) => {
       return state;
   }
 };
-
-export default hobbies;
