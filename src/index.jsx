@@ -3,13 +3,15 @@ import './index.styl';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import logger from 'redux-logger';
 
 import formApp from './reducers/index.jsx';
 import AppInterface from './AppInterface.jsx';
 
 const store = createStore(
-  formApp
+  formApp,
+  applyMiddleware(logger)
 );
 
 const root = document.getElementById('AppInterface')

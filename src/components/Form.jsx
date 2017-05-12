@@ -2,6 +2,8 @@ import './Form.styl';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { updateName } from '../actions/index.jsx';
+
 import Hobbies from './hobbies/Hobbies.jsx';
 import Submit from './Submit.jsx';
 import LastNameSubmitted from './LastNameSubmitted.jsx';
@@ -9,7 +11,6 @@ import LastNameSubmitted from './LastNameSubmitted.jsx';
 class Form extends React.Component {
   constructor(props){
     super();
-
     this.state = {
       firstNameValue: '',
       lastNameValue: '',
@@ -24,15 +25,7 @@ class Form extends React.Component {
   }
 
   handleNameChange(e) {
-    if (e.target.className.indexOf('first') > -1) {
-      this.setState({
-        firstNameValue: e.target.value
-      });
-    } else {
-      this.setState({
-        lastNameValue: e.target.value
-      });
-    }
+    this.props.dispatch(updateName(e.target.id, e.target.value));
   }
 
   handleSubmit(){
@@ -80,8 +73,7 @@ class Form extends React.Component {
   }
 
   render() {
-    console.log('Form.jsx props', this.props);
-    // console.log('Form.jsx state', this.state);
+    const name = this.props.state.name;
     return (
       <div className="form">
         <div className="form-input-container">
@@ -89,8 +81,8 @@ class Form extends React.Component {
             <span><span className='fa fa-user-o'/> Enter Name</span>
           </div>
           <div className="name-input-container">
-            <input type="text" className='form-input name-input name-input-first' value={this.state.firstNameValue} onChange={this.handleNameChange} placeholder='First' />
-            <input type="text" className='form-input name-input name-input-last' value={this.state.lastNameValue} onChange={this.handleNameChange} placeholder='Last' />
+            <input type="text" id='first' className='form-input name-input name-input-first' value={name.first} onChange={this.handleNameChange} placeholder='First' />
+            <input type="text" id='last' className='form-input name-input name-input-last' value={name.last} onChange={this.handleNameChange} placeholder='Last' />
           </div>
           <div className="form-guide form-guide-hobbies">
             <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>

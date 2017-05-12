@@ -10,3 +10,9 @@ export const removeHobby = (id) => ({
   type: 'REMOVE_HOBBY',
   id
 });
+
+export const updateName = (side, text) => ({
+  type: 'UPDATE_NAME',
+  side,
+  text
+});
