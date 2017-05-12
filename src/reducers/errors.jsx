@@ -7,8 +7,8 @@ export const errors = (state = defaultState, action) => {
   switch (action.type) {
     case 'SUBMIT_ERROR':
       return {
-        hobbiesError: action.nameError,
-        nameError: action.hobbiesError,
+        hobbiesError: action.hobbiesError,
+        nameError: action.nameError,
         resolveSubmission: true
       };
     case 'SUBMIT_SUCCESS':
