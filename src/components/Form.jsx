@@ -19,10 +19,13 @@ class Form extends React.Component {
 
   handleSubmit(){
     const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
+    const hobbies = this.props.state.hobbies;
+    const nameError = name.replace(' ', '').length === 0;
+    const hobbiesError = hobbies.length === 0
     this.props.dispatch(submitLoading());
     window.setTimeout(() => {
-      if (name.replace(' ', '').length === 0) {
-        this.handleSubmitError();
+      if (nameError || hobbiesError) {
+        this.handleSubmitError(nameError, hobbiesError);
       } else {
         this.handleSubmitSuccess(name);
       }
@@ -36,23 +39,36 @@ class Form extends React.Component {
     }, 1000);
   }
 
-  handleSubmitError(){
-    this.props.dispatch(submitError());
+  handleSubmitError(nameError, hobbiesError){
+    this.props.dispatch(submitError(nameError, hobbiesError));
     window.setTimeout(() => {
       this.props.dispatch(submitReset());
     }, 1000);
   }
 
   render() {
+    const name = `${this.props.state.name.first} ${this.props.state.name.last}`
+    const errors = this.props.state.errors;
     return (
       <div className="form">
         <div className="form-input-container">
           <div className="form-guide">
-            <span><span className='fa fa-user-o'/> Enter Name</span>
+            <span>
+              <span className='form-guide-icon fa fa-user-o'/> Enter Name 
+              {errors.nameError
+                ? <span className={'fa fa-warning'}/>
+                : null              
+              }
+            </span>
           </div>
             <Name/>
           <div className="form-guide form-guide-hobbies">
-            <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>
+            <span><span className='form-guide-icon fa fa-thumbs-o-up'/> Enter Hobbies
+            {errors.hobbiesError
+              ? <span className={'fa fa-warning'}/>
+              : null              
+            }
+            </span>
           </div>
           <Hobbies />
         </div>

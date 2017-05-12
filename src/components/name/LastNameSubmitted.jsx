@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 function LastNameSubmitted(props) {
   const lns = props.state.lns;
-  console.log(lns);
   return (
     <div id='lastNameSubmitted' className={"lastNameSubmitted " 
                     + (lns.replace(' ', '').length > 0 ? 'lastNameSubmitted-valid' : 'lastNameSubmitted-invalid')}>

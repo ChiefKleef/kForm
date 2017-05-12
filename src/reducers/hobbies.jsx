@@ -16,7 +16,8 @@ const hobby = (state, action) => {
     case 'ADD_HOBBY':
       return {
         id: action.id,
-        text: action.text
+        text: action.text,
+        color: action.color
       };
     default:
       return state;
@@ -30,7 +31,7 @@ export const hobbies = (state = [], action) => {
         ...state,
         hobby(undefined, action),
       ];
-    case 'ROMOVE_HOBBY':
+    case 'REMOVE_HOBBY':
       return state.filter(h => {
         return h.id !== action.id;
       });

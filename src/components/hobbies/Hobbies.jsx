@@ -2,7 +2,7 @@ import './Hobbies.styl';
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { addHobby } from '../../actions/index.jsx';
+import { addHobby, removeHobby } from '../../actions/index.jsx';
 
 import Hobby from './Hobby.jsx';
 import AddHobby from './AddHobby.jsx';
@@ -11,10 +11,15 @@ class Hobbies extends React.Component {
   constructor(props){
     super();
     this.addHobby = this.addHobby.bind(this);
+    this.removeHobby = this.removeHobby.bind(this);
   }
   
   addHobby(name){
     this.props.dispatch(addHobby(name));
+  }
+
+  removeHobby(id){
+    this.props.dispatch(removeHobby(id, this.props.state.hobbies));
   }
 
   render() {
@@ -25,7 +30,10 @@ class Hobbies extends React.Component {
           {hobbies.map(hobby =>
             <Hobby
               key={hobby.id}
+              id={hobby.id}
               name={hobby.text}
+              color={hobby.color}
+              removeHobby={this.removeHobby}
             />
           )}
         </div>

@@ -20,7 +20,7 @@ export const name = (state = defaultName, action) => {
 export const lns = (state='', action) => {
   switch(action.type) {
     case 'SUBMIT_SUCCESS':
-      return action.name
+      return `${action.greeting}, ${action.name}.`
     default:
       return state;
   }

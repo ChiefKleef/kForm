@@ -2,11 +2,14 @@ import React from 'react';
 import './Hobby.styl'
 
 function Hobby(props) {
-  const { name } = props;
+  const { id, name, color, removeHobby } = props;
+  const handleClick = () => {
+    removeHobby(id);
+  }
   return (
-    <li className='hobby' >
-      {name}
-    </li>
+    <span className='hobby' style={{color: color}}>
+      <span className='fa fa-minus-circle' onClick={handleClick} />{name}
+    </span>
   );
 }
 
