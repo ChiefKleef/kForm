@@ -6,8 +6,8 @@ function LastNameSubmitted(props) {
   const lns = props.state.lns;
   return (
     <div id='lastNameSubmitted' className={"lastNameSubmitted " 
-                    + (lns.replace(' ', '').length > 0 ? 'lastNameSubmitted-valid' : 'lastNameSubmitted-invalid')}>
-      {lns}
+                    + (lns.name.replace(' ', '').length > 0 ? 'lastNameSubmitted-valid' : 'lastNameSubmitted-invalid')}>
+      <span className='lastNameSubmitted-greeting'>{lns.greeting}, </span><span className='lastNameSubmitted-name'>{lns.name}.</span>
     </div>
   );
 }

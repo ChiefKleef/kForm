@@ -17,10 +17,17 @@ export const name = (state = defaultName, action) => {
 };
 
 // last name submitted
-export const lns = (state='', action) => {
+const defaultLns = {
+  name: '',
+  greeting: ''
+}
+export const lns = (state = defaultLns, action) => {
   switch(action.type) {
     case 'SUBMIT_SUCCESS':
-      return `${action.greeting}, ${action.name}.`
+      return {
+        name: action.name,
+        greeting: action.greeting
+      }
     default:
       return state;
   }
