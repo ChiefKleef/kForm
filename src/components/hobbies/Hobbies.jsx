@@ -36,6 +36,10 @@ class Hobbies extends React.Component {
               removeHobby={this.removeHobby}
             />
           )}
+          {hobbies.length === 0
+            ? <div className='hobbies-container-emptyMessage'><span className='hobbies-container-emptyMessage-text'>No Hobbies Added</span></div>
+            : null
+          }
         </div>
         <AddHobby addHobby={this.addHobby} />
       </div>
