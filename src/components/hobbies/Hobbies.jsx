@@ -12,12 +12,14 @@ class Hobbies extends React.Component {
   render() {
     return (
       <div className="hobbies">
-        {this.props.hobbies.map((hobby, i) =>
-          <Hobby
-            key={i}
-            name={hobby.name}
-          />
-        )}
+        <div className="hobbies-container">
+          {this.props.hobbies.map((hobby, i) =>
+            <Hobby
+              key={i}
+              name={hobby.name}
+            />
+          )}
+        </div>
         <AddHobby addHobby={this.props.addHobby} />
       </div>
     );
