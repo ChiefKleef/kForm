@@ -9,25 +9,44 @@ heightVar = 30px;
   height: heightVar;
   .addHobby-input {
     flex-grow: 1;
-    max-width: calc(100% - 30px)
+    max-width: calc(100% - 40px)
     border-right-width: 0px;
     border-left-width: 0px;
     border-top-width: 0px;
-    border-bottom: 1px solid white;
     background-color: rgba(0,0,0,0);
     color: white;
   }
+  .addHobby-button-active {
+    cursor: pointer;
+    border-color: white;
+    color: white;
+    &:hover{
+      border-color: rgba(162,226,132, 1);
+      color: rgba(162,226,132, 1);
+    }
+    &:active{
+      border-color: rgba(162,226,132, 1);
+      background-color: rgba(162,226,132, 1);
+      color: white;
+    }
+
+  }
+  .addHobby-button-inactive {
+    background-color: rgba(162,226,132, 0);
+    border-color: rgb(150,150,150);
+    color: rgb(150,150,150);
+  }
   .addHobby-button {
     height: heightVar;
-    width: heightVar;
-    background-color: #A2E284;
+    width: heightVar;    
+    border-radius: 50%;
+    border-width: 1.5px;
+    border-style: solid;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    .fa {
-      color: white
-    }
+    transition: opacity 0.2s linear;
+    font-size: 10pt;
   }
 }

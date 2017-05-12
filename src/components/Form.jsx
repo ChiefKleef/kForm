@@ -12,6 +12,7 @@ class AppInterface extends React.Component {
       firstNameValue: '',
       lastNameValue: '',
       lastNameSubmittedValue: '',
+      hobbies: [],
       submitButtonMessage: 'submit',
       submitting: false
     }
@@ -19,6 +20,7 @@ class AppInterface extends React.Component {
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addHobby = this.addHobby.bind(this);
   }
 
   handleNameChange(e) {
@@ -54,6 +56,7 @@ class AppInterface extends React.Component {
       firstNameValue: '',
       lastNameValue: '',
       lastNameSubmittedValue: `${first} ${last}`,
+      hobbies: [],
       submitButtonMessage: 'done'
     });
     window.setTimeout(() => {
@@ -76,6 +79,12 @@ class AppInterface extends React.Component {
     }, 1000);
   }
 
+  addHobby(name){
+    this.setState({
+      hobbies: [...this.state.hobbies, {name: name}]
+    })
+  }
+
   render() {
     return (
       <div className="form">
@@ -90,7 +99,7 @@ class AppInterface extends React.Component {
           <div className="form-guide form-guide-hobbies">
             <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>
           </div>
-          <Hobbies />
+          <Hobbies addHobby={this.addHobby} hobbies={this.state.hobbies} />
         </div>
         <Submit handleSubmit={this.handleSubmit} submitMessage={this.state.submitButtonMessage} submitting={this.state.submitting}/>
         <div className="form-lns-container">
