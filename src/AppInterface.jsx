@@ -9,6 +9,7 @@ class AppInterface extends React.Component {
   }
 
   render() {
+    console.log('top level props', this.props);
     return (
       <div className="appInterface">
         <div className="form-container">

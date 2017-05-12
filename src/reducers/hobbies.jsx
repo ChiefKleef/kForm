@@ -11,6 +11,7 @@ const hobby = (state, action) => {
 };
 
 export const hobbies = (state = [], action) => {
+  console.log(action);
   switch (action.type) {
     case 'ADD_HOBBY':
       return [

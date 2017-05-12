@@ -1,18 +1,19 @@
 import './Form.styl';
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import Hobbies from './hobbies/Hobbies.jsx';
 import Submit from './Submit.jsx';
 import LastNameSubmitted from './LastNameSubmitted.jsx';
 
-class AppInterface extends React.Component {
+class Form extends React.Component {
   constructor(props){
     super();
+
     this.state = {
       firstNameValue: '',
       lastNameValue: '',
       lastNameSubmittedValue: '',
-      hobbies: [],
       submitButtonMessage: 'submit',
       submitting: false
     }
@@ -20,7 +21,6 @@ class AppInterface extends React.Component {
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addHobby = this.addHobby.bind(this);
   }
 
   handleNameChange(e) {
@@ -79,13 +79,9 @@ class AppInterface extends React.Component {
     }, 1000);
   }
 
-  addHobby(name){
-    this.setState({
-      hobbies: [...this.state.hobbies, {name: name}]
-    })
-  }
-
   render() {
+    console.log('Form.jsx props', this.props);
+    // console.log('Form.jsx state', this.state);
     return (
       <div className="form">
         <div className="form-input-container">
@@ -99,7 +95,7 @@ class AppInterface extends React.Component {
           <div className="form-guide form-guide-hobbies">
             <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>
           </div>
-          <Hobbies addHobby={this.addHobby} hobbies={this.state.hobbies} />
+          <Hobbies />
         </div>
         <Submit handleSubmit={this.handleSubmit} submitMessage={this.state.submitButtonMessage} submitting={this.state.submitting}/>
         <div className="form-lns-container">
@@ -109,4 +105,22 @@ class AppInterface extends React.Component {
     );
   }
 }
- export default AppInterface;
+
+Form.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  state,
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   onTodoClick(id) {
+//     dispatch(toggleTodo(id));
+//   },
+// });
+
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps
+)(Form);
