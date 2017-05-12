@@ -12,9 +12,6 @@ import LastNameSubmitted from './name/LastNameSubmitted.jsx';
 class Form extends React.Component {
   constructor(props){
     super();
-    this.state = {
-      lastNameSubmittedValue: ''
-    }
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +19,6 @@ class Form extends React.Component {
 
   handleSubmit(){
     const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
-    console.log(name);
     this.props.dispatch(submitLoading());
     window.setTimeout(() => {
       if (name.replace(' ', '').length === 0) {

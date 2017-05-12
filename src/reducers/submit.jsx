@@ -1,13 +1,3 @@
-// const verifyIsName = (name) => {
-//   return name.replace(' ', '').length > 0
-// }
-
-// const processSubmission = (state, action) => {
-//   return verifyIsName(action.name) 
-//     ? 'success'
-//     : 'error'
-// };
-
 const defaultState = {
   submitMessage: 'submit',
   submitting: false
