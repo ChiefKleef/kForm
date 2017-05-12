@@ -1,8 +1,9 @@
 .submit {
-  border-width: 1.5px;
+  border-width: 1px;
   border-style: solid;
   height: 40px;
-  width: 115px;
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -11,8 +12,13 @@
   font-size: 13pt;
   cursor: pointer;
   .submit-text {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
     user-select: none;
     bottom: -0.1em;
+  }
+  &:focus{
+    outline: none;
   }
 }
 
@@ -36,13 +42,17 @@
   color: white;
 }
 
-.submit-loading {
-  transition-duration: 0.2s;
-  opacity: .5
-}
-
-.submit-done {
+.submit-success {
   transition-duration: 0.2s;
   background-color: #A2E284;
   border-color: #A2E284;
+  color: white;
+}
+
+.submit-loading {
+  transition-duration: 0.2s;
+  background-color: rgba(255,255,255,0);
+  border-color: white;
+  color: white;
+  opacity: .5
 }

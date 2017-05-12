@@ -1,3 +1,16 @@
+export const hobbyEntry = (state = '', action) => {
+  switch(action.type) {
+    case 'UPDATE_HOBBY':
+      return action.text;
+    case 'ADD_HOBBY':
+      return '';
+    case 'SUBMIT_SUCCESS':
+      return '';
+    default:
+      return state;
+  }
+}
+
 const hobby = (state, action) => {
   switch (action.type) {
     case 'ADD_HOBBY':
@@ -11,7 +24,6 @@ const hobby = (state, action) => {
 };
 
 export const hobbies = (state = [], action) => {
-  console.log(action);
   switch (action.type) {
     case 'ADD_HOBBY':
       return [
@@ -20,8 +32,10 @@ export const hobbies = (state = [], action) => {
       ];
     case 'ROMOVE_HOBBY':
       return state.filter(h => {
-        return h.id !== action.id
+        return h.id !== action.id;
       });
+    case 'SUBMIT_SUCCESS':
+      return [];
     default:
       return state;
   }

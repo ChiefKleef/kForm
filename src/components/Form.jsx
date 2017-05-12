@@ -2,96 +2,67 @@ import './Form.styl';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { updateName } from '../actions/index.jsx';
+import { submitLoading, submitSuccess, submitError, submitReset } from '../actions/index.jsx';
 
 import Hobbies from './hobbies/Hobbies.jsx';
 import Submit from './Submit.jsx';
-import LastNameSubmitted from './LastNameSubmitted.jsx';
+import Name from './name/Name.jsx';
+import LastNameSubmitted from './name/LastNameSubmitted.jsx';
 
 class Form extends React.Component {
   constructor(props){
     super();
     this.state = {
-      firstNameValue: '',
-      lastNameValue: '',
-      lastNameSubmittedValue: '',
-      submitButtonMessage: 'submit',
-      submitting: false
+      lastNameSubmittedValue: ''
     }
-    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleNameChange(e) {
-    this.props.dispatch(updateName(e.target.id, e.target.value));
-  }
-
   handleSubmit(){
-    console.log(this.state);
-    const { firstNameValue, lastNameValue } = this.state;
-    this.setState({
-      submitButtonMessage: 'loading',
-      submitting: true
-    });
+    const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
+    console.log(name);
+    this.props.dispatch(submitLoading());
     window.setTimeout(() => {
-      if (firstNameValue.replace(' ', '').length === 0 && lastNameValue.replace(' ', '').length === 0) {
+      if (name.replace(' ', '').length === 0) {
         this.handleSubmitError();
       } else {
-        this.handleSubmitSuccess(firstNameValue, lastNameValue);
+        this.handleSubmitSuccess(name);
       }
     }, 2000)
   }
 
-  handleSubmitSuccess(first, last){
-    this.setState({
-      firstNameValue: '',
-      lastNameValue: '',
-      lastNameSubmittedValue: `${first} ${last}`,
-      hobbies: [],
-      submitButtonMessage: 'done'
-    });
+  handleSubmitSuccess(name){
+    this.props.dispatch(submitSuccess(name));
     window.setTimeout(() => {
-      this.setState({
-        submitButtonMessage: 'submit',
-        submitting: false
-      });
+      this.props.dispatch(submitReset());
     }, 1000);
   }
 
   handleSubmitError(){
-    this.setState({
-      submitButtonMessage: 'error'
-    });
+    this.props.dispatch(submitError());
     window.setTimeout(() => {
-      this.setState({
-        submitButtonMessage: 'submit',
-        submitting: false
-      });
+      this.props.dispatch(submitReset());
     }, 1000);
   }
 
   render() {
-    const name = this.props.state.name;
     return (
       <div className="form">
         <div className="form-input-container">
           <div className="form-guide">
             <span><span className='fa fa-user-o'/> Enter Name</span>
           </div>
-          <div className="name-input-container">
-            <input type="text" id='first' className='form-input name-input name-input-first' value={name.first} onChange={this.handleNameChange} placeholder='First' />
-            <input type="text" id='last' className='form-input name-input name-input-last' value={name.last} onChange={this.handleNameChange} placeholder='Last' />
-          </div>
+            <Name/>
           <div className="form-guide form-guide-hobbies">
             <span><span className='fa fa-thumbs-o-up'/> Enter Hobbies</span>
           </div>
           <Hobbies />
         </div>
-        <Submit handleSubmit={this.handleSubmit} submitMessage={this.state.submitButtonMessage} submitting={this.state.submitting}/>
+        <Submit handleSubmit={this.handleSubmit} />
         <div className="form-lns-container">
-          <LastNameSubmitted name={this.state.lastNameSubmittedValue}/>
+          <LastNameSubmitted />
         </div>
       </div>
     );
@@ -106,13 +77,6 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   onTodoClick(id) {
-//     dispatch(toggleTodo(id));
-//   },
-// });
-
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
 )(Form);

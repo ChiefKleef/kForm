@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import { hobbies } from './hobbies.jsx';
-import { name } from './name.jsx';
+import { submit } from './submit.jsx';
+import { hobbies, hobbyEntry } from './hobbies.jsx';
+import { name, lns } from './name.jsx';
 
 const formApp = combineReducers({
+  submit,
   hobbies,
-  name
+  hobbyEntry,
+  name,
+  lns
 });
 
 export default formApp;

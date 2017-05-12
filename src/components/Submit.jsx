@@ -1,19 +1,33 @@
-import React from 'react';
 import './Submit.styl'
+import React, { PropTypes }  from 'react';
+import { connect } from 'react-redux';
+import { updateHobby } from '../actions/index.jsx';
 
 function Submit(props) {
 
-  const { submitMessage, submitting, handleSubmit } = props;
+  const { handleSubmit } = props;
+
+  const { submitMessage, submitting } = props.state.submit
 
   const handleClick = () => {
     if (! submitting) handleSubmit();
   }
 
   return (
-    <div className={`submit submit-${submitMessage}`} onClick={handleClick}>
+    <button className={`submit submit-${submitMessage}`} onClick={handleClick}>
       <span className="submit-text">{submitMessage.toUpperCase()}</span>
-    </div>
+    </button>
   );
 }
 
-export default Submit;
+Submit.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  state,
+});
+
+export default connect(
+  mapStateToProps,
+)(Submit);

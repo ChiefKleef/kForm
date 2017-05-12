@@ -18,10 +18,11 @@ class Hobbies extends React.Component {
   }
 
   render() {
+    const hobbies = this.props.state.hobbies;
     return (
       <div className="hobbies">
-        <div className="hobbies-container">
-          {this.props.state.hobbies.map(hobby =>
+        <div className={"hobbies-container " + (hobbies.length > 0 ? 'hobbies-container-active' : 'hobbies-container-inactive')}>
+          {hobbies.map(hobby =>
             <Hobby
               key={hobby.id}
               name={hobby.text}
