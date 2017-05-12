@@ -1,7 +1,7 @@
 {
-  "name": "boston",
+  "name": "k-form",
   "version": "1.0.0",
-  "description": "Boston",
+  "description": "k-form",
   "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,9 +17,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eltonjuan/boston/issues"
+    "url": "https://github.com/ChiefKleef/kForm/issues"
   },
-  "homepage": "https://github.com/eltonjuan/boston#readme",
+  "homepage": "https://github.com/ChiefKleef/kForm#readme",
   "dependencies": {
     "express": "^4.14.0",
     "file-system": "^2.2.2",
