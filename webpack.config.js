@@ -9,7 +9,7 @@ module.exports = {
     vendor: ['react', 'velocity-react']
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.webpack.js', '.js', '.jsx'],
     alias: {
       'webworkify': 'webworkify-webpack'
     },
@@ -41,7 +41,7 @@ module.exports = {
       exclude: 'node_modules',
       loader: 'babel',
       query: {
-        presets: ['es2015', 'react', 'stage-0']
+        presets: ['es2015', 'react', 'stage-2']
       }
     },
     {
