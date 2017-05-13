@@ -8,10 +8,17 @@ class AddHobby extends React.Component {
     super();
     this.handleValueChange = this.handleValueChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleValueChange(e) {
     this.props.dispatch(updateHobby(e.target.value));
+  }
+
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleSubmit();
+    }
   }
 
   handleSubmit() {
@@ -25,7 +32,7 @@ class AddHobby extends React.Component {
     const hobby = this.props.state.hobbyEntry;
     return (
       <div className='addHobby'>
-        <input type='text' className='form-input addHobby-input' value={hobby} onChange={this.handleValueChange} placeholder='Add Hobby' />
+        <input type='text' className='form-input addHobby-input' value={hobby} onChange={this.handleValueChange} placeholder='Add Hobby' onKeyPress={this.handleKeyPress}/>
         <button className={'addHobby-button ' + 
                     (hobby.replace(' ', '').length > 0 ? 'addHobby-button-active' : 'addHobby-button-inactive')}
              onClick={this.handleSubmit}>

@@ -4,7 +4,7 @@
   "description": "k-form",
   "main": "index.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha \".\\src\\**\\*.spec.jsx\" --compilers jsx:babel-core/register",
     "dev": "webpack-dev-server --hot --inline --config \"webpack.config.dev.js\"",
     "heroku-postbuild": "webpack --progress",
     "start": "node app.js"
@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/ChiefKleef/kForm#readme",
   "dependencies": {
+    "enzyme": "^2.8.2",
     "express": "^4.14.0",
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",
+    "mocha": "^3.3.0",
     "net": "^1.0.2",
     "node-uuid": "^1.4.8",
     "react": "^15.4.1",
