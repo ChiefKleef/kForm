@@ -1,12 +1,9 @@
 import './Submit.styl';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updateHobby } from '../actions/index.jsx';
 
 function Submit(props) {
-  const { handleSubmit } = props;
-
-  const { submitMessage, submitting } = props.state.submit;
+  const { handleSubmit, submitMessage, submitting } = props;
 
   const handleClick = () => {
     if (!submitting) handleSubmit();
@@ -20,11 +17,14 @@ function Submit(props) {
 }
 
 Submit.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitMessage: PropTypes.string.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  state,
+  submitMessage: state.submit.submitMessage,
+  submitting: state.submit.submitting,
 });
 
 export default connect(

@@ -1,9 +1,8 @@
-import './Hobbies.styl';
+
 import React, { PropTypes } from 'react';
-
 import { connect } from 'react-redux';
+import './Hobbies.styl';
 import { addHobby, removeHobby } from '../../actions/index.jsx';
-
 import Hobby from './Hobby.jsx';
 import AddHobby from './AddHobby.jsx';
 
@@ -19,11 +18,11 @@ class Hobbies extends React.Component {
   }
 
   removeHobby(id) {
-    this.props.dispatch(removeHobby(id, this.props.state.hobbies));
+    this.props.dispatch(removeHobby(id, this.props.hobbies));
   }
 
   render() {
-    const hobbies = this.props.state.hobbies;
+    const hobbies = this.props.hobbies;
     return (
       <div className="hobbies">
         <div className={`hobbies-container ${hobbies.length > 0 ? 'hobbies-container-active' : 'hobbies-container-inactive'}`}>
@@ -38,8 +37,8 @@ class Hobbies extends React.Component {
           )}
           {hobbies.length === 0
             ? <div className="hobbies-container-emptyMessage">
-                <span className="hobbies-container-emptyMessage-text">No Hobbies Added</span>
-              </div>
+              <span className="hobbies-container-emptyMessage-text">No Hobbies Added</span>
+            </div>
             : null
           }
         </div>
@@ -49,13 +48,13 @@ class Hobbies extends React.Component {
   }
 }
 
-Hobby.propTypes = {
+Hobbies.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  state: PropTypes.object.isRequired,
+  hobbies: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  state,
+  hobbies: state.hobbies,
 });
 
 export default connect(
