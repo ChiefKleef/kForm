@@ -1,17 +1,16 @@
-import './Submit.styl'
-import React, { PropTypes }  from 'react';
+import './Submit.styl';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { updateHobby } from '../actions/index.jsx';
 
 function Submit(props) {
-
   const { handleSubmit } = props;
 
-  const { submitMessage, submitting } = props.state.submit
+  const { submitMessage, submitting } = props.state.submit;
 
   const handleClick = () => {
-    if (! submitting) handleSubmit();
-  }
+    if (!submitting) handleSubmit();
+  };
 
   return (
     <button className={`submit submit-${submitMessage}`} onClick={handleClick}>
@@ -24,7 +23,7 @@ Submit.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
 });
 

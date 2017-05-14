@@ -11,11 +11,11 @@ import AppInterface from './AppInterface.jsx';
 
 const store = createStore(
   formApp,
-  applyMiddleware(logger)
+  applyMiddleware(logger),
 );
 
-const root = document.getElementById('AppInterface')
-render( 
+const root = document.getElementById('AppInterface');
+render(
   <Provider store={store}>
-    <AppInterface / >
+    <AppInterface />
   </Provider>, root);

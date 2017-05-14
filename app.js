@@ -1,13 +1,13 @@
-var express = require('express');
+const express = require('express');
 
-var app = express();
+const app = express();
 
 app.set('port', process.env.PORT || 8080);
 
-app.use('/', express.static('src'));
+app.use('/', express.static('dist'));
 
 var server = app.listen(app.get('port'), () => {
-    var port = server.address().port;
-    console.log('server listening on port ', port)
+  const port = server.address().port;
+  console.log('server listening on port ', port);
 });
 

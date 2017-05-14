@@ -10,7 +10,7 @@ const formApp = combineReducers({
   hobbies,
   hobbyEntry,
   name,
-  lns
+  lns,
 });
 
 export default formApp;

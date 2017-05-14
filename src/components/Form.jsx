@@ -11,18 +11,18 @@ import Name from './name/Name.jsx';
 import LastNameSubmitted from './name/LastNameSubmitted.jsx';
 
 class Form extends React.Component {
-  constructor(props){
+  constructor(props) {
     super();
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(){
+  handleSubmit() {
     const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
     const hobbies = this.props.state.hobbies;
-    const nameError = ! verifiers.verifyName(name);
-    const hobbiesError = ! verifiers.verifyHobbies(hobbies);
+    const nameError = !verifiers.verifyName(name);
+    const hobbiesError = !verifiers.verifyHobbies(hobbies);
     this.props.dispatch(submitLoading());
     window.setTimeout(() => {
       if (nameError || hobbiesError) {
@@ -30,17 +30,17 @@ class Form extends React.Component {
       } else {
         this.handleSubmitSuccess(name);
       }
-    }, 2000)
+    }, 2000);
   }
 
-  handleSubmitSuccess(name){
+  handleSubmitSuccess(name) {
     this.props.dispatch(submitSuccess(name));
     window.setTimeout(() => {
       this.props.dispatch(submitReset());
     }, 1000);
   }
 
-  handleSubmitError(nameError, hobbiesError){
+  handleSubmitError(nameError, hobbiesError) {
     this.props.dispatch(submitError(nameError, hobbiesError));
     window.setTimeout(() => {
       this.props.dispatch(submitReset());
@@ -48,26 +48,26 @@ class Form extends React.Component {
   }
 
   render() {
-    const name = `${this.props.state.name.first} ${this.props.state.name.last}`
+    const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
     const errors = this.props.state.errors;
     return (
       <div className="form">
         <div className="form-input-container">
           <div className="form-guide">
             <span>
-              <span className='form-guide-icon fa fa-user-o'/> Enter Name 
+              <span className="form-guide-icon fa fa-user-o" /> Enter Name
               {errors.nameError
-                ? <span className={'fa fa-warning'}/>
-                : null              
+                ? <span className={'fa fa-warning'} />
+                : null
               }
             </span>
           </div>
-            <Name/>
+          <Name />
           <div className="form-guide form-guide-hobbies">
-            <span><span className='form-guide-icon fa fa-thumbs-o-up'/> Enter Hobbies
+            <span><span className="form-guide-icon fa fa-thumbs-o-up" /> Enter Hobbies
             {errors.hobbiesError
-              ? <span className={'fa fa-warning'}/>
-              : null              
+              ? <span className={'fa fa-warning'} />
+              : null
             }
             </span>
           </div>
@@ -86,7 +86,7 @@ Form.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
 });
 

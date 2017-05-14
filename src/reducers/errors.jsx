@@ -2,46 +2,45 @@ import * as verifiers from '../components/formUtils.jsx';
 const defaultState = {
   hobbiesError: false,
   nameError: false,
-  resolveSubmission: false
-}
+  resolveSubmission: false,
+};
 export const errors = (state = defaultState, action) => {
   switch (action.type) {
     case 'SUBMIT_ERROR':
       return {
         hobbiesError: action.hobbiesError,
         nameError: action.nameError,
-        resolveSubmission: true
+        resolveSubmission: true,
       };
     case 'SUBMIT_SUCCESS':
       return {
         ...state,
-        resolveSubmission: false
+        resolveSubmission: false,
       };
     case 'UPDATE_NAME':
       if (state.resolveSubmission) {
         if (verifiers.verifyName(action.text)) {
           return {
             ...state,
-            nameError: false
-          };
-        } else {
-          return {
-            ...state,
-            nameError: true
+            nameError: false,
           };
         }
-      } else {
-        return state;
+        return {
+          ...state,
+          nameError: true,
+        };
       }
+      return state;
+
     case 'ADD_HOBBY':
       if (state.resolveSubmission) {
         return {
           ...state,
-          hobbiesError: false
+          hobbiesError: false,
         };
-      } else {
-        return state;
       }
+      return state;
+
     case 'REMOVE_HOBBY':
       if (state.resolveSubmission) {
         // if the hobbies are now empty, cause error
@@ -49,15 +48,13 @@ export const errors = (state = defaultState, action) => {
         if (action.hobbies.length === 1) {
           return {
             ...state,
-            hobbiesError: true
-          };
-        } else {
-          return {
-            ...state,
-            hobbiesError: false
+            hobbiesError: true,
           };
         }
-        
+        return {
+          ...state,
+          hobbiesError: false,
+        };
       }
     default:
       return state;

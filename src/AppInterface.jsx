@@ -3,7 +3,7 @@ import React from 'react';
 
 import Form from './components/Form.jsx';
 
-function AppInterface(props) {
+function AppInterface() {
   return (
     <div className="appInterface">
       <div className="form-container">
@@ -12,4 +12,4 @@ function AppInterface(props) {
     </div>
   );
 }
- export default AppInterface;
+export default AppInterface;

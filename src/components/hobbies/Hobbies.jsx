@@ -8,17 +8,17 @@ import Hobby from './Hobby.jsx';
 import AddHobby from './AddHobby.jsx';
 
 class Hobbies extends React.Component {
-  constructor(props){
+  constructor(props) {
     super();
     this.addHobby = this.addHobby.bind(this);
     this.removeHobby = this.removeHobby.bind(this);
   }
-  
-  addHobby(name){
+
+  addHobby(name) {
     this.props.dispatch(addHobby(name));
   }
 
-  removeHobby(id){
+  removeHobby(id) {
     this.props.dispatch(removeHobby(id, this.props.state.hobbies));
   }
 
@@ -26,7 +26,7 @@ class Hobbies extends React.Component {
     const hobbies = this.props.state.hobbies;
     return (
       <div className="hobbies">
-        <div className={"hobbies-container " + (hobbies.length > 0 ? 'hobbies-container-active' : 'hobbies-container-inactive')}>
+        <div className={`hobbies-container ${hobbies.length > 0 ? 'hobbies-container-active' : 'hobbies-container-inactive'}`}>
           {hobbies.map(hobby =>
             <Hobby
               key={hobby.id}
@@ -34,10 +34,10 @@ class Hobbies extends React.Component {
               name={hobby.text}
               color={hobby.color}
               removeHobby={this.removeHobby}
-            />
+            />,
           )}
           {hobbies.length === 0
-            ? <div className='hobbies-container-emptyMessage'><span className='hobbies-container-emptyMessage-text'>No Hobbies Added</span></div>
+            ? <div className="hobbies-container-emptyMessage"><span className="hobbies-container-emptyMessage-text">No Hobbies Added</span></div>
             : null
           }
         </div>
@@ -47,11 +47,11 @@ class Hobbies extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
 });
 
 
- export default connect(
+export default connect(
    mapStateToProps,
  )(Hobbies);
