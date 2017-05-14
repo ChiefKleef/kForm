@@ -5,7 +5,7 @@ import { verifyName } from '../formUtils.jsx';
 import { updateHobby } from '../../actions/index.jsx';
 
 class AddHobby extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.handleValueChange = this.handleValueChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,27 +17,25 @@ class AddHobby extends React.Component {
   }
 
   handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.handleSubmit();
-    }
+    if (e.key === 'Enter') this.handleSubmit();
   }
 
   handleSubmit() {
-    const hobby = this.props.state.hobbyEntry;
+    const { hobbyEntry } = this.props;
     // reusing verify name logic for the hobby entry
-    if (verifyName(hobby)) {
-      this.props.addHobby(hobby);
-    }
+    if (verifyName(hobbyEntry)) this.props.addHobby(hobbyEntry);
   }
 
   render() {
-    const hobby = this.props.state.hobbyEntry;
+    const { hobbyEntry } = this.props;
     return (
       <div className="addHobby">
-        <input type="text" className="form-input addHobby-input" value={hobby} onChange={this.handleValueChange} placeholder="Add Hobby" onKeyPress={this.handleKeyPress} />
+        <input
+          type="text" className="form-input addHobby-input" value={hobbyEntry} 
+          onChange={this.handleValueChange} placeholder="Add Hobby" onKeyPress={this.handleKeyPress}
+        />
         <button
-          className={`addHobby-button ${
-                    verifyName(hobby) ? 'addHobby-button-active' : 'addHobby-button-inactive'}`}
+          className={`addHobby-button ${verifyName(hobbyEntry) ? 'addHobby-button-active' : 'addHobby-button-inactive'}`}
           onClick={this.handleSubmit}
         >
           <span className="fa fa-plus" />
@@ -49,10 +47,12 @@ class AddHobby extends React.Component {
 
 AddHobby.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  addHobby: PropTypes.func.isRequired,
+  hobbyEntry: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  state,
+  hobbyEntry: state.hobbyEntry,
 });
 
 export default connect(

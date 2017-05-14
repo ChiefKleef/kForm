@@ -11,7 +11,7 @@ import Name from './name/Name.jsx';
 import LastNameSubmitted from './name/LastNameSubmitted.jsx';
 
 class Form extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
@@ -19,8 +19,8 @@ class Form extends React.Component {
   }
 
   handleSubmit() {
-    const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
-    const hobbies = this.props.state.hobbies;
+    const name = `${this.props.firstName} ${this.props.lastName}`;
+    const hobbies = this.props.hobbies;
     const nameError = !verifiers.verifyName(name);
     const hobbiesError = !verifiers.verifyHobbies(hobbies);
     this.props.dispatch(submitLoading());
@@ -48,15 +48,14 @@ class Form extends React.Component {
   }
 
   render() {
-    const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
-    const errors = this.props.state.errors;
+    const { nameError, hobbiesError } = this.props;
     return (
       <div className="form">
         <div className="form-input-container">
           <div className="form-guide">
             <span>
               <span className="form-guide-icon fa fa-user-o" /> Enter Name
-              {errors.nameError
+              {nameError
                 ? <span className={'fa fa-warning'} />
                 : null
               }
@@ -65,7 +64,7 @@ class Form extends React.Component {
           <Name />
           <div className="form-guide form-guide-hobbies">
             <span><span className="form-guide-icon fa fa-thumbs-o-up" /> Enter Hobbies
-            {errors.hobbiesError
+            {hobbiesError
               ? <span className={'fa fa-warning'} />
               : null
             }
@@ -84,10 +83,19 @@ class Form extends React.Component {
 
 Form.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  hobbies: PropTypes.array.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  hobbiesError: PropTypes.bool.isRequired,
+  nameError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  state,
+  hobbies: state.hobbies,
+  firstName: state.name.first,
+  lastName: state.name.last,
+  hobbiesError: state.errors.hobbiesError,
+  nameError: state.errors.nameError,
 });
 
 export default connect(

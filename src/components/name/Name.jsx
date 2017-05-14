@@ -7,18 +7,18 @@ function Name(props) {
   const handleNameChange = (e) => {
     props.dispatch(updateName(e.target.id, e.target.value));
   };
-  const name = props.name;
+  const { firstName, lastName } = props;
   return (
     <div className="name-input-container">
       <input
         type="text" id="first"
         className="form-input name-input name-input-first"
-        value={name.first} onChange={handleNameChange} placeholder="First"
+        value={firstName} onChange={handleNameChange} placeholder="First"
       />
       <input
         type="text" id="last"
         className="form-input name-input name-input-last"
-        value={name.last} onChange={handleNameChange} placeholder="Last"
+        value={lastName} onChange={handleNameChange} placeholder="Last"
       />
     </div>
   );
@@ -26,11 +26,13 @@ function Name(props) {
 
 Name.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  name: state.name,
+  firstName: state.name.first,
+  lastName: state.name.last,
 });
 
 export default connect(

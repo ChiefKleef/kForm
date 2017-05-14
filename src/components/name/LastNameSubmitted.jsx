@@ -1,27 +1,31 @@
 import './LastNameSubmitted.styl';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import { verifyName } from '../formUtils.jsx';
 
 function LastNameSubmitted(props) {
-  const lns = props.state.lns;
+  const { greeting, name } = props;
   return (
     <div
       id="lastNameSubmitted" className={`lastNameSubmitted ${
-                     verifyName(lns.name) ? 'lastNameSubmitted-valid' : 'lastNameSubmitted-invalid'}`}
+      verifyName(name) ? 'lastNameSubmitted-valid' : 'lastNameSubmitted-invalid'}`}
     >
-      <span className="lastNameSubmitted-greeting">{lns.greeting}, </span><span className="lastNameSubmitted-name">{lns.name}.</span>
+      <span className="lastNameSubmitted-greeting">{greeting}, </span>
+      <span className="lastNameSubmitted-name">{name}.</span>
     </div>
   );
 }
 
 LastNameSubmitted.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  greeting: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  state,
+  greeting: state.lns.greeting,
+  name: state.lns.name,
 });
 
 export default connect(
