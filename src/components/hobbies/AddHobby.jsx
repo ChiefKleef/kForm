@@ -1,6 +1,7 @@
 import './AddHobby.styl';
 import React, { PropTypes }  from 'react';
 import { connect } from 'react-redux';
+import { verifyName } from '../formUtils.jsx';
 import { updateHobby } from '../../actions/index.jsx';
 
 class AddHobby extends React.Component {
@@ -23,7 +24,8 @@ class AddHobby extends React.Component {
 
   handleSubmit() {
     const hobby = this.props.state.hobbyEntry;
-    if (hobby.replace(' ', '').length > 0) {
+    // reusing verify name logic for the hobby entry
+    if (verifyName(hobby)) {
       this.props.addHobby(hobby);
     }
   }
@@ -34,7 +36,7 @@ class AddHobby extends React.Component {
       <div className='addHobby'>
         <input type='text' className='form-input addHobby-input' value={hobby} onChange={this.handleValueChange} placeholder='Add Hobby' onKeyPress={this.handleKeyPress}/>
         <button className={'addHobby-button ' + 
-                    (hobby.replace(' ', '').length > 0 ? 'addHobby-button-active' : 'addHobby-button-inactive')}
+                    (verifyName(hobby) ? 'addHobby-button-active' : 'addHobby-button-inactive')}
              onClick={this.handleSubmit}>
           <span className='fa fa-plus' />
         </button>

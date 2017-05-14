@@ -2,6 +2,7 @@ import './Form.styl';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import * as verifiers from './formUtils.jsx';
 import { submitLoading, submitSuccess, submitError, submitReset } from '../actions/index.jsx';
 
 import Hobbies from './hobbies/Hobbies.jsx';
@@ -20,8 +21,8 @@ class Form extends React.Component {
   handleSubmit(){
     const name = `${this.props.state.name.first} ${this.props.state.name.last}`;
     const hobbies = this.props.state.hobbies;
-    const nameError = name.replace(' ', '').length === 0;
-    const hobbiesError = hobbies.length === 0
+    const nameError = ! verifiers.verifyName(name);
+    const hobbiesError = ! verifiers.verifyHobbies(hobbies);
     this.props.dispatch(submitLoading());
     window.setTimeout(() => {
       if (nameError || hobbiesError) {

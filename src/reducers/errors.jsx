@@ -1,3 +1,4 @@
+import * as verifiers from '../components/formUtils.jsx';
 const defaultState = {
   hobbiesError: false,
   nameError: false,
@@ -18,7 +19,7 @@ export const errors = (state = defaultState, action) => {
       };
     case 'UPDATE_NAME':
       if (state.resolveSubmission) {
-        if (action.text.replace(' ', '').length > 0) {
+        if (verifiers.verifyName(action.text)) {
           return {
             ...state,
             nameError: false
@@ -44,7 +45,8 @@ export const errors = (state = defaultState, action) => {
     case 'REMOVE_HOBBY':
       if (state.resolveSubmission) {
         // if the hobbies are now empty, cause error
-        if (action.hobbies.length - 1 === 0) {
+        // this cannot use the hobbies util bc it is predicting the next state
+        if (action.hobbies.length === 1) {
           return {
             ...state,
             hobbiesError: true
