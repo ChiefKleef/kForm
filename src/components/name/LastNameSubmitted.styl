@@ -1,3 +1,14 @@
+.example-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.example-enter.example-enter-active {
+  transition-duration: 1s;
+  opacity: 1;
+  transform: translateX(0px);
+}
+
 .lastNameSubmitted {
   color: white;
   font-size: 20pt;
@@ -13,15 +24,4 @@
     font-weight: 500;
     font-style: normal;
   }
-}
-
-.lastNameSubmitted-valid {
-  transition-duration: 1s;
-  opacity: 1;
-  transform: translateX(0px);
-}
-
-.lastNameSubmitted-invalid {
-  opacity: 0;
-  transform: translateX(-20px);
 }

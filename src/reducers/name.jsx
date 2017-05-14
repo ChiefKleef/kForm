@@ -20,13 +20,16 @@ export const name = (state = defaultName, action) => {
 const defaultLns = {
   name: '',
   greeting: '',
+  count: 0,
 };
 export const lns = (state = defaultLns, action) => {
   switch (action.type) {
     case 'SUBMIT_SUCCESS':
+      const count = state.count + 1;
       return {
         name: action.name,
         greeting: action.greeting,
+        count: count,
       };
     default:
       return state;
