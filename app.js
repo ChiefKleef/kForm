@@ -6,7 +6,7 @@ app.set('port', process.env.PORT || 8080);
 
 app.use('/', express.static('dist'));
 
-var server = app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
   const port = server.address().port;
   console.log('server listening on port ', port);
 });

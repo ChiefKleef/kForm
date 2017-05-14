@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import './Hobby.styl';
 
 function Hobby(props) {
@@ -12,5 +12,12 @@ function Hobby(props) {
     </span>
   );
 }
+
+Hobby.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  removeHobby: PropTypes.func.isRequired,
+};
 
 export default Hobby;

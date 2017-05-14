@@ -1,5 +1,5 @@
 import './Hobbies.styl';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 import { addHobby, removeHobby } from '../../actions/index.jsx';
@@ -8,7 +8,7 @@ import Hobby from './Hobby.jsx';
 import AddHobby from './AddHobby.jsx';
 
 class Hobbies extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.addHobby = this.addHobby.bind(this);
     this.removeHobby = this.removeHobby.bind(this);
@@ -28,16 +28,18 @@ class Hobbies extends React.Component {
       <div className="hobbies">
         <div className={`hobbies-container ${hobbies.length > 0 ? 'hobbies-container-active' : 'hobbies-container-inactive'}`}>
           {hobbies.map(hobby =>
-            <Hobby
+            (<Hobby
               key={hobby.id}
               id={hobby.id}
               name={hobby.text}
               color={hobby.color}
               removeHobby={this.removeHobby}
-            />,
+            />),
           )}
           {hobbies.length === 0
-            ? <div className="hobbies-container-emptyMessage"><span className="hobbies-container-emptyMessage-text">No Hobbies Added</span></div>
+            ? <div className="hobbies-container-emptyMessage">
+                <span className="hobbies-container-emptyMessage-text">No Hobbies Added</span>
+              </div>
             : null
           }
         </div>
@@ -47,10 +49,14 @@ class Hobbies extends React.Component {
   }
 }
 
+Hobby.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = state => ({
   state,
 });
-
 
 export default connect(
    mapStateToProps,
