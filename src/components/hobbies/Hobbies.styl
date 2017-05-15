@@ -1,4 +1,29 @@
 minHeight = 44px;
+
+.hobby-animation-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.hobby-animation-enter.hobby-animation-enter-active {
+  transition-duration: 0.2s;
+  opacity: 1;
+  transform: translateX(0px);
+}
+.emptyMessage-animation-enter {
+  opacity: 0;
+}
+.emptyMessage-animation-enter.emptyMessage-animation-enter-active {
+  transition-duration: 0.2s;
+  opacity: 1;
+}
+.emptyMessage-animation-leave {
+  opacity: 1;
+}
+.emptyMessage-animation-leave.emptyMessage-animation-leave-active {
+  transition-duration: 0.2s;
+  opacity: 0;
+}
+
 .hobbies {
   position: relative;
   width: 100%;
@@ -6,14 +31,20 @@ minHeight = 44px;
   .hobbies-container {
     min-height: minHeight;
     max-height: 132px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-y: auto;
-    transition: height .3s linear;
+    .hobby-animation-tg {
+      min-height: minHeight;
+      max-height: 132px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow-y: auto;
+    }
     .hobbies-container-emptyMessage {
+      position: absolute;
+      top: 0px;
+      left: 0px;
       width: 100%;
       height: minHeight;
       display: flex;
@@ -21,12 +52,13 @@ minHeight = 44px;
       flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
+      pointer-events: none;
       .hobbies-container-emptyMessage-text {
+        letter-spacing: 2px;
         font-family: 'Raleway', sans-serif;
         font-weight: 200;
         font-style: italic;
         font-size: 13pt;
-        letter-spacing: 2px;
         color: rgb(115,115,115);
         user-select: none;
       }

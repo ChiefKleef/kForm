@@ -1,6 +1,6 @@
-
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import './Hobbies.styl';
 import { addHobby, removeHobby } from '../../actions/index.jsx';
 import Hobby from './Hobby.jsx';
@@ -26,21 +26,35 @@ class Hobbies extends React.Component {
     return (
       <div className="hobbies">
         <div className={`hobbies-container ${hobbies.length > 0 ? 'hobbies-container-active' : 'hobbies-container-inactive'}`}>
-          {hobbies.map(hobby =>
-            (<Hobby
-              key={hobby.id}
-              id={hobby.id}
-              name={hobby.text}
-              color={hobby.color}
-              removeHobby={this.removeHobby}
-            />),
-          )}
-          {hobbies.length === 0
-            ? <div className="hobbies-container-emptyMessage">
-              <span className="hobbies-container-emptyMessage-text">No Hobbies Added</span>
-            </div>
-            : null
-          }
+          <CSSTransitionGroup
+            className="hobby-animation-tg"
+            transitionName="hobby-animation"
+            transitionEnterTimeout={200}
+            transitionLeave={false}
+          >
+            {hobbies.map(hobby =>
+              (<Hobby
+                key={hobby.id}
+                id={hobby.id}
+                name={hobby.text}
+                color={hobby.color}
+                removeHobby={this.removeHobby}
+              />),
+            )}
+          </CSSTransitionGroup>
+          <div className="hobbies-container-emptyMessage">
+            <CSSTransitionGroup
+              className="emptyMessage-animation-tg"
+              transitionName="emptyMessage-animation"
+              transitionEnterTimeout={200}
+              transitionLeaveTimeout={200}
+            >
+              {hobbies.length === 0
+                ? <span className="hobbies-container-emptyMessage-text">No Hobbies Added</span>
+                : null
+              }
+            </CSSTransitionGroup>
+          </div>
         </div>
         <AddHobby addHobby={this.addHobby} />
       </div>

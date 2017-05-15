@@ -9,9 +9,8 @@ function LastNameSubmitted(props) {
   const { greeting, name, count } = props;
   return (
     <CSSTransitionGroup
-      transitionName="example"
+      transitionName="lastNameSubmitted-animation"
       transitionEnterTimeout={1000}
-      transitionLeaveTimeout={0}
       transitionLeave={false}
     >
       {verifyName(name)

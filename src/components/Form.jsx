@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as verifiers from './formUtils.jsx';
 import { submitLoading, submitSuccess, submitError, submitReset } from '../actions/index.jsx';
 
+import FormGuide from './FormGuide.jsx';
 import Hobbies from './hobbies/Hobbies.jsx';
 import Submit from './Submit.jsx';
 import Name from './name/Name.jsx';
@@ -52,24 +53,15 @@ class Form extends React.Component {
     return (
       <div className="form">
         <div className="form-input-container">
-          <div className="form-guide">
-            <span>
-              <span className="form-guide-icon fa fa-user-o" /> Enter Name
-              {nameError
-                ? <span className={'fa fa-warning'} />
-                : null
-              }
-            </span>
-          </div>
+          <FormGuide
+            compId="name" message=" Enter Name"
+            icon="user-o" error={nameError}
+          />
           <Name />
-          <div className="form-guide form-guide-hobbies">
-            <span><span className="form-guide-icon fa fa-thumbs-o-up" /> Enter Hobbies
-            {hobbiesError
-              ? <span className={'fa fa-warning'} />
-              : null
-            }
-            </span>
-          </div>
+          <FormGuide
+            compId="hobbies" message=" Enter Hobbies"
+            icon="thumbs-o-up" error={hobbiesError}
+          />
           <Hobbies />
         </div>
         <Submit handleSubmit={this.handleSubmit} />
